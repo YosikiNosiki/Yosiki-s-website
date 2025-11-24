@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fortnite | Сайт игр</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body dir="ltr">
+    <nav class="navbar">
+        <ul>
+            <li><a href="index.html" id="nav-home">Главная</a></li>
+            <li><a href="games.html" id="nav-games">Игры</a></li>
+            <li><a href="feedback.html" id="nav-feedback">Обратная связь</a></li>
+        </ul>
+
+        <div class="lang-switcher">
+            <div class="lang-box">
+                <span class="planet-icon">🌐</span>
+                <select id="language-select">
+                    <option value="ru">Русский</option>
+                    <option value="en">English</option>
+                    <option value="he">עברית</option>
+                    <option value="ua">Українська</option>
+                </select>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <div class="card">
+            <h2 id="main-title">Как скачать Fortnite</h2>
+
+            <p id="intro-text">
+                Следуйте этой инструкции, чтобы установить Fortnite на свой компьютер.
+            </p>
+
+            <ol id="steps-list">
+                <li>Перейдите на сайт Fortnite: https://www.fortnite.com/ или в магазин Epic Games.</li>
+                <li>Нажмите кнопку «Download» / «Скачать Epic Games Launcher».</li>
+                <li>Скачайте установочный файл лаунчера и запустите его.</li>
+                <li>Следуйте шагам установщика, чтобы установить Epic Games Launcher.</li>
+                <li>Откройте Epic Games Launcher и войдите в свой аккаунт.</li>
+                <li>Найдите Fortnite в магазине и нажмите «Установить».</li>
+                <li>После загрузки нажмите «Играть», чтобы запустить Fortnite.</li>
+            </ol>
+
+            <a href="https://www.fortnite.com/" class="button" id="download-button" target="_blank">
+                Открыть сайт Fortnite
+            </a>
+
+            <br><br>
+
+            <a href="games.html" id="back-button" class="button" style="background:#ccc; color:#000;">
+                ⬅ Назад ко всем играм
+            </a>
+        </div>
+    </main>
+
+    <footer>
+        Сайт сделал Йося
+    </footer>
+
+    <script>
+        const translations = {
+            ru: {
+                title: 'Как скачать Fortnite',
+                intro: 'Следуйте этой инструкции, чтобы установить Fortnite на свой компьютер.',
+                button: 'Открыть сайт Fortnite',
+                back: '⬅ Назад ко всем играм',
+                steps: [
+                    'Перейдите на страницу Fortnite: https://www.fortnite.com/ или в магазин Epic Games.',
+                    'Нажмите кнопку «Download» / «Скачать Epic Games Launcher».',
+                    'Скачайте установочный файл лаунчера и запустите его.',
+                    'Следуйте шагам установщика, чтобы установить Epic Games Launcher.',
+                    'Откройте Epic Games Launcher и войдите в свой аккаунт.',
+                    'Найдите Fortnite в магазине и нажмите «Установить».',
+                    'После загрузки нажмите «Играть», чтобы запустить Fortnite.'
+                ],
+                nav: { home: 'Главная', games: 'Игры', feedback: 'Обратная связь' }
+            },
+
+            en: {
+                title: 'How to download Fortnite',
+                intro: 'Follow these steps to install Fortnite on your PC.',
+                button: 'Open Fortnite website',
+                back: '⬅ Back to all games',
+                steps: [
+                    'Go to Fortnite website: https://www.fortnite.com/ or Epic Games Store.',
+                    'Click "Download" or "Download Epic Games Launcher".',
+                    'Download the installer file and run it.',
+                    'Follow the steps to install Epic Games Launcher.',
+                    'Open Epic Games Launcher and sign in.',
+                    'Find Fortnite in the store and click "Install".',
+                    'When the download is complete, click "Play" to start Fortnite.'
+                ],
+                nav: { home: 'Home', games: 'Games', feedback: 'Feedback' }
+            },
+
+            he: {
+                title: 'איך להוריד את Fortnite למחשב',
+                intro: 'עקבו אחרי השלבים כדי להתקין את Fortnite על המחשב שלכם.',
+                button: 'פתח את אתר Fortnite',
+                back: '⬅ חזרה לכל המשחקים',
+                steps: [
+                    'היכנסו לאתר Fortnite: https://www.fortnite.com/ או לחנות Epic Games.',
+                    'לחצו על "Download" או "Download Epic Games Launcher".',
+                    'הורידו את קובץ ההתקנה והריצו אותו.',
+                    'השלימו את שלבי ההתקנה של Epic Games Launcher.',
+                    'פתחו את Epic Games Launcher והתחברו לחשבון שלכם.',
+                    'מצאו את Fortnite בחנות ולחצו "Install".',
+                    'לאחר שההורדה מסתיימת, לחצו "Play" כדי להפעיל את Fortnite.'
+                ],
+                nav: { home: 'ראשי', games: 'משחקים', feedback: 'משוב' }
+            },
+
+            ua: {
+                title: 'Як скачати Fortnite',
+                intro: 'Дотримуйтесь цієї інструкції, щоб встановити Fortnite на свій комп’ютер.',
+                button: 'Відкрити сайт Fortnite',
+                back: '⬅ Назад до всіх ігор',
+                steps: [
+                    'Перейдіть на сайт Fortnite: https://www.fortnite.com/ або в Epic Games Store.',
+                    'Натисніть кнопку «Download» або «Download Epic Games Launcher».',
+                    'Завантажте файл інсталятора та запустіть його.',
+                    'Виконайте кроки встановлення Epic Games Launcher.',
+                    'Відкрийте Epic Games Launcher і увійдіть у свій акаунт.',
+                    'Знайдіть Fortnite у магазині та натисніть «Встановити».',
+                    'Після завантаження натисніть «Грати», щоб запустити Fortnite.'
+                ],
+                nav: { home: 'Головна', games: 'Ігри', feedback: 'Зворотний звʼязок' }
+            }
+        };
+
+        function applyTranslations(lang) {
+            const t = translations[lang];
+
+            document.getElementById('main-title').textContent = t.title;
+            document.getElementById('intro-text').textContent = t.intro;
+            document.getElementById('download-button').textContent = t.button;
+            document.getElementById('back-button').textContent = t.back;
+
+            const list = document.getElementById('steps-list');
+            list.innerHTML = '';
+            t.steps.forEach(step => {
+                const li = document.createElement('li');
+                li.textContent = step;
+                list.appendChild(li);
+            });
+
+            document.getElementById('nav-home').textContent = t.nav.home;
+            document.getElementById('nav-games').textContent = t.nav.games;
+            document.getElementById('nav-feedback').textContent = t.nav.feedback;
+
+            // направление текста
+            if (lang === 'he') {
+                document.body.dir = 'rtl';
+                document.querySelector('.card').style.textAlign = 'right';
+            } else {
+                document.body.dir = 'ltr';
+                document.querySelector('.card').style.textAlign = 'left';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('siteLang') || 'ru';
+            const select = document.getElementById('language-select');
+            select.value = savedLang;
+            applyTranslations(savedLang);
+
+            select.addEventListener('change', () => {
+                const lang = select.value;
+                localStorage.setItem('siteLang', lang);
+                applyTranslations(lang);
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roblox | Сайт игр</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body dir="ltr">
+    <nav class="navbar">
+        <ul>
+            <li><a href="index.html" id="nav-home">Главная</a></li>
+            <li><a href="games.html" id="nav-games">Игры</a></li>
+            <li><a href="feedback.html" id="nav-feedback">Обратная связь</a></li>
+        </ul>
+
+        <div class="lang-switcher">
+            <div class="lang-box">
+                <span class="planet-icon">🌐</span>
+                <select id="language-select">
+                    <option value="ru">Русский</option>
+                    <option value="en">English</option>
+                    <option value="he">עברית</option>
+                    <option value="ua">Українська</option>
+                </select>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <div class="card">
+            <h2 id="main-title">Как скачать Roblox</h2>
+
+            <p id="intro-text">
+                Следуйте этой инструкции, чтобы установить Roblox на свой компьютер.
+            </p>
+
+            <ol id="steps-list">
+                <li>Перейдите на страницу загрузки Roblox: https://www.roblox.com/download</li>
+                <li>Нажмите кнопку «Download» и сохраните установочный файл.</li>
+                <li>Откройте файл RobloxPlayerInstaller.exe.</li>
+                <li>Подтвердите установку и дождитесь её окончания.</li>
+                <li>После установки откройте любую игру на сайте Roblox и нажмите «Play».</li>
+                <li>При первом запуске Roblox может попросить войти в аккаунт — авторизуйтесь.</li>
+            </ol>
+
+            <a href="https://www.roblox.com/download" class="button" id="download-button" target="_blank">
+                Открыть сайт Roblox
+            </a>
+
+            <br><br>
+
+            <a href="games.html" class="button" id="back-button" style="background:#ccc; color:#000;">
+                ⬅ Назад ко всем играм
+            </a>
+        </div>
+    </main>
+
+    <footer>
+        Сайт сделал Йося
+    </footer>
+
+    <script>
+        const translations = {
+            ru: {
+                title: 'Как скачать Roblox',
+                intro: 'Следуйте этой инструкции, чтобы установить Roblox на свой компьютер.',
+                button: 'Открыть сайт Roblox',
+                backButton: '⬅ Назад ко всем играм',
+                steps: [
+                    'Перейдите на страницу загрузки Roblox: https://www.roblox.com/download',
+                    'Нажмите кнопку «Download» и сохраните установочный файл.',
+                    'Откройте файл RobloxPlayerInstaller.exe.',
+                    'Подтвердите установку и дождитесь её окончания.',
+                    'После установки откройте любую игру на сайте Roblox и нажмите «Play».',
+                    'При первом запуске Roblox войдите в свой аккаунт.'
+                ],
+                nav: { home: 'Главная', games: 'Игры', feedback: 'Обратная связь' }
+            },
+
+            en: {
+                title: 'How to download Roblox',
+                intro: 'Follow these steps to install Roblox on your PC.',
+                button: 'Open Roblox website',
+                backButton: '⬅ Back to all games',
+                steps: [
+                    'Go to the Roblox download page: https://www.roblox.com/download',
+                    'Click the “Download” button and save the installer.',
+                    'Open the RobloxPlayerInstaller.exe file.',
+                    'Confirm the installation and wait until it finishes.',
+                    'After installation, open any game on the Roblox website and click “Play”.',
+                    'On first launch, sign in to your Roblox account.'
+                ],
+                nav: { home: 'Home', games: 'Games', feedback: 'Feedback' }
+            },
+
+            he: {
+                title: 'איך להוריד את Roblox למחשב',
+                intro: 'עקבו אחרי השלבים כדי להתקין את Roblox על המחשב שלכם.',
+                button: 'פתח את אתר Roblox',
+                backButton: '⬅ חזרה לכל המשחקים',
+                steps: [
+                    'היכנסו לעמוד ההורדה של Roblox: https://www.roblox.com/download',
+                    'לחצו על "Download" ושמרו את קובץ ההתקנה.',
+                    'הריצו את הקובץ RobloxPlayerInstaller.exe.',
+                    'אשרו את ההתקנה והמתינו לסיום.',
+                    'לאחר ההתקנה, היכנסו לכל משחק באתר Roblox ולחצו "Play".',
+                    'בפעם הראשונה ייתכן שתצטרכו להתחבר לחשבון Roblox שלכם.'
+                ],
+                nav: { home: 'ראשי', games: 'משחקים', feedback: 'משוב' }
+            },
+
+            ua: {
+                title: 'Як скачати Roblox',
+                intro: 'Дотримуйтесь цієї інструкції, щоб встановити Roblox на комп’ютер.',
+                button: 'Відкрити сайт Roblox',
+                backButton: '⬅ Назад до всіх ігор',
+                steps: [
+                    'Перейдіть на сторінку завантаження Roblox: https://www.roblox.com/download',
+                    'Натисніть кнопку «Download» і збережіть файл установника.',
+                    'Відкрийте файл RobloxPlayerInstaller.exe.',
+                    'Підтвердіть встановлення й дочекайтеся завершення.',
+                    'Після встановлення відкрийте будь-яку гру на сайті Roblox і натисніть «Play».',
+                    'Під час першого запуску увійдіть у свій акаунт Roblox.'
+                ],
+                nav: { home: 'Головна', games: 'Ігри', feedback: 'Зворотний звʼязок' }
+            }
+        };
+
+        function applyTranslations(lang) {
+            const t = translations[lang];
+
+            document.getElementById('main-title').textContent = t.title;
+            document.getElementById('intro-text').textContent = t.intro;
+            document.getElementById('download-button').textContent = t.button;
+            document.getElementById('back-button').textContent = t.backButton;
+
+            const list = document.getElementById('steps-list');
+            list.innerHTML = '';
+            t.steps.forEach(step => {
+                const li = document.createElement('li');
+                li.textContent = step;
+                list.appendChild(li);
+            });
+
+            document.getElementById('nav-home').textContent = t.nav.home;
+            document.getElementById('nav-games').textContent = t.nav.games;
+            document.getElementById('nav-feedback').textContent = t.nav.feedback;
+
+            if (lang === 'he') {
+                document.body.dir = 'rtl';
+                document.querySelector('.card').style.textAlign = 'right';
+            } else {
+                document.body.dir = 'ltr';
+                document.querySelector('.card').style.textAlign = 'left';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('siteLang') || 'ru';
+            const select = document.getElementById('language-select');
+            select.value = savedLang;
+            applyTranslations(savedLang);
+
+            select.addEventListener('change', () => {
+                const lang = select.value;
+                localStorage.setItem('siteLang', lang);
+                applyTranslations(lang);
+            });
+        });
+    </script>
+
+</body>
+</html>

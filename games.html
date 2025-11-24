@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Игры | Сайт игр</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <ul>
+            <li><a href="index.html" id="nav-home">Главная</a></li>
+            <li><a href="games.html" class="active" id="nav-games">Игры</a></li>
+            <li><a href="#feedback" id="nav-feedback">Обратная связь</a></li>
+        </ul>
+        <div class="lang-switcher">
+            <div class="lang-box">
+                <span class="planet-icon">🌐</span>
+                <select id="language-select">
+                    <option value="ru">Русский</option>
+                    <option value="en">English</option>
+                    <option value="he">עברית</option>
+                    <option value="ua">Українська</option>
+                </select>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <div class="card">
+            <h2 id="main-title">Выберите игру для скачивания:</h2>
+            <a href="roblox.html" class="button">Roblox</a>
+            <a href="fortnite.html" class="button">Fortnite</a>
+            <a href="minecraft.html" class="button">Minecraft</a>
+        </div>
+    </main>
+
+    <footer>
+        Сайт сделал Йося
+    </footer>
+
+    <script>
+        const translations = {
+            ru: {
+                title: 'Выберите игру для скачивания:',
+                nav: {
+                    home: 'Главная',
+                    games: 'Игры',
+                    feedback: 'Обратная связь'
+                }
+            },
+            en: {
+                title: 'Choose a game to download:',
+                nav: {
+                    home: 'Home',
+                    games: 'Games',
+                    feedback: 'Feedback'
+                }
+            },
+            he: {
+                title: 'בחרו משחק להורדה:',
+                nav: {
+                    home: 'ראשי',
+                    games: 'משחקים',
+                    feedback: 'משוב'
+                }
+            },
+            ua: {
+                title: 'Виберіть гру для скачування:',
+                nav: {
+                    home: 'Головна',
+                    games: 'Ігри',
+                    feedback: 'Зворотний зв’язок'
+                }
+            }
+        };
+
+        function updateLang() {
+            const select = document.getElementById('language-select');
+            const lang = select.value;
+            localStorage.setItem('siteLang', lang);
+            document.getElementById('main-title').textContent = translations[lang].title;
+            document.getElementById('nav-home').textContent = translations[lang].nav.home;
+            document.getElementById('nav-games').textContent = translations[lang].nav.games;
+            document.getElementById('nav-feedback').textContent = translations[lang].nav.feedback;
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('siteLang') || 'ru';
+            const select = document.getElementById('language-select');
+            select.value = savedLang;
+            updateLang();
+            select.addEventListener('change', updateLang);
+        });
+    </script>
+</body>
+</html>
