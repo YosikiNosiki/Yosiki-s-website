@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация и вход</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .auth-card {
+            max-width: 420px;
+            margin: 60px auto;
+            background: rgba(255,255,255,0.97);
+            border-radius: 24px;
+            box-shadow: 0 8px 32px rgba(37,99,235,0.18);
+            padding: 32px 28px;
+            text-align: center;
+        }
+        .auth-card h2 {
+            margin-bottom: 18px;
+            color: #2563eb;
+        }
+        .auth-card input {
+            width: 100%;
+            margin-bottom: 14px;
+            padding: 12px;
+            border-radius: 12px;
+            border: 1px solid #cbd5e1;
+            font-size: 1rem;
+        }
+        .auth-card button {
+            width: 100%;
+            padding: 12px;
+            border-radius: 12px;
+            background: linear-gradient(135deg,#2563eb,#1d4ed8);
+            color: #fff;
+            font-weight: 700;
+            border: none;
+            font-size: 1rem;
+            margin-top: 8px;
+            cursor: pointer;
+        }
+        .auth-card .error {
+            color: #dc2626;
+            margin-bottom: 10px;
+        }
+        .auth-card .success {
+            color: #22c55e;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="auth-card" id="auth-card">
+        <h2 id="auth-title">Регистрация</h2>
+        <div id="auth-msg"></div>
+        <input type="text" id="auth-name" placeholder="Имя" autocomplete="off">
+        <input type="email" id="auth-email" placeholder="Почта" autocomplete="off">
+        <input type="password" id="auth-pass" placeholder="Пароль" autocomplete="off">
+        <button id="auth-btn">Зарегистрироваться</button>
+    </div>
+    <script>
+        // Проверка авторизации
+        if(localStorage.getItem('authUser')){
+            document.getElementById('auth-card').innerHTML = '<h2 class="success">Вы авторизованы!</h2>';
+        }
+
+        function showMsg(msg, type) {
+            const el = document.getElementById('auth-msg');
+            el.textContent = msg;
+            el.className = type;
+        }
+
+        document.getElementById('auth-btn').onclick = function(){
+            const name = document.getElementById('auth-name').value.trim();
+            const email = document.getElementById('auth-email').value.trim();
+            const pass = document.getElementById('auth-pass').value.trim();
+            if(name.length < 2){
+                showMsg('Введите имя (минимум 2 символа)', 'error');
+                return;
+            }
+            if(!/^\S+@\S+\.\S+$/.test(email)){
+                showMsg('Введите корректную почту', 'error');
+                return;
+            }
+            if(pass.length < 4){
+                showMsg('Пароль минимум 4 символа', 'error');
+                return;
+            }
+            localStorage.setItem('authUser', JSON.stringify({name, email, pass}));
+            showMsg('Успешно! Вы авторизованы.', 'success');
+            setTimeout(()=>{
+                document.getElementById('auth-card').innerHTML = '<h2 class="success">Вы авторизованы!</h2>';
+            }, 1200);
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Главная | Сайт игр</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="page-loading">
+    <nav class="navbar">
+        <ul>
+            <li><a href="index.html" class="active" id="nav-home">Главная</a></li>
+            <li><a href="games.html" id="nav-games">Игры</a></li>
+            <li><a href="#feedback" id="nav-feedback">Обратная связь</a></li>
+        </ul>
+        <button class="auth-login-btn" id="auth-login-btn" onclick="window.location.href='auth.html'">Войти</button>
+        <div class="auth-profile" id="auth-profile" style="display:none;position:absolute;top:14px;right:20px;z-index:101;align-items:center;gap:8px;">
+            <img id="auth-avatar" src="https://www.gstatic.com/images/branding/product/1x/avatar_square_blue_512dp.png" alt="Профиль" style="width:32px;height:32px;border-radius:50%;">
+            <span id="auth-nickname" style="color:#fff;font-weight:600;font-size:1rem;"></span>
+        </div>
+        <div class="lang-switcher">
+            <div class="lang-box">
+                <span class="planet-icon">🌐</span>
+                <select id="language-select" onchange="updateLang()">
+                    <option value="ru">Русский</option>
+                    <option value="en">English</option>
+                    <option value="he">עברית</option>
+                    <option value="ua">Українська</option>
+                </select>
+            </div>
+        </div>
+    </nav>
+    <main>
+        <div class="card">
+                <h1 id="main-title">Привет!</h1>
+                <p id="main-desc">Здесь вы сможете найти все игры, которые вы захотите скачать!</p>
+        </div>
+    </main>
+
+        <script>
+            const translations = {
+                ru: {
+                    title: 'Привет!',
+                    desc: 'Здесь вы сможете найти все игры, которые вы захотите скачать!',
+                    nav: {
+                        home: 'Главная',
+                        games: 'Игры',
+                        feedback: 'Обратная связь'
+                    },
+                    login: 'Войти'
+                },
+                en: {
+                    title: 'Hello!',
+                    desc: 'Here you can find all the games you want to download!',
+                    nav: {
+                        home: 'Home',
+                        games: 'Games',
+                        feedback: 'Feedback'
+                    },
+                    login: 'Login'
+                },
+                he: {
+                    title: 'shalom!',
+                    desc: 'כאן תוכלו למצוא את כל המשחקים שתרצו להוריד!',
+                    nav: {
+                        home: 'ראשי',
+                        games: 'משחקים',
+                        feedback: 'משוב'
+                    },
+                    login: 'התחבר'
+                },
+                ua: {
+                    title: 'Привіт!',
+                    desc: 'Тут ви зможете знайти всі ігри, які захочете скачати!',
+                    nav: {
+                        home: 'Головна',
+                        games: 'Ігри',
+                        feedback: 'Зворотний зв’язок'
+                    },
+                    login: 'Увійти'
+                }
+            };
+            function setDirection(lang) {
+                const dir = lang === 'he' ? 'rtl' : 'ltr';
+                document.documentElement.setAttribute('dir', dir);
+                document.body.setAttribute('dir', dir);
+            }
+
+            function updateLang() {
+                const select = document.getElementById('language-select');
+                const lang = select.value;
+                localStorage.setItem('siteLang', lang);
+
+                setDirection(lang);
+
+                // Анимация выхода
+                const langBox = document.querySelector('.lang-box');
+                const card = document.querySelector('.card');
+                langBox.classList.add('lang-animate');
+                card.classList.add('lang-animate');
+
+                setTimeout(() => {
+                    document.getElementById('main-title').textContent = translations[lang].title;
+                    document.getElementById('main-desc').textContent = translations[lang].desc;
+                    document.getElementById('nav-home').textContent = translations[lang].nav.home;
+                    document.getElementById('nav-games').textContent = translations[lang].nav.games;
+                    document.getElementById('nav-feedback').textContent = translations[lang].nav.feedback;
+                    // перевод кнопки
+                    const loginBtn = document.querySelector('.auth-login-btn');
+                    if(loginBtn) loginBtn.textContent = translations[lang].login;
+                    showAuthProfile();
+                    // Установка направления текста
+                    if(lang === 'he'){
+                        document.body.dir = 'rtl';
+                    }else{
+                        document.body.dir = 'ltr';
+                    }
+
+                    // Анимация входа
+                    requestAnimationFrame(() => {
+                        langBox.classList.remove('lang-animate');
+                        card.classList.remove('lang-animate');
+                    });
+                }, 180);
+            }
+
+            function showAuthProfile() {
+                const user = localStorage.getItem('authUser');
+                const btn = document.getElementById('auth-login-btn');
+                const profile = document.getElementById('auth-profile');
+                const nick = document.getElementById('auth-nickname');
+                const avatar = document.getElementById('auth-avatar');
+                if(user) {
+                    const data = JSON.parse(user);
+                    btn.style.display = 'none';
+                    profile.style.display = 'flex';
+                    nick.textContent = data.name;
+                    avatar.src = data.avatar || 'https://www.gstatic.com/images/branding/product/1x/avatar_square_blue_512dp.png';
+                } else {
+                    btn.style.display = '';
+                    profile.style.display = 'none';
+                }
+            }
+
+            // Функция для плавного перехода страниц
+            function handlePageTransition(event) {
+                event.preventDefault();
+                const href = event.currentTarget.href;
+                document.body.classList.add('page-exit');
+                setTimeout(() => {
+                    window.location.href = href;
+                }, 350);
+            }
+
+            document.addEventListener('DOMContentLoaded', () => {
+                const savedLang = localStorage.getItem('siteLang') || 'ru';
+                const select = document.getElementById('language-select');
+                select.value = savedLang;
+                updateLang();
+
+                // Удаляем скрытие и добавляем анимацию входа
+                document.body.classList.remove('page-loading');
+                document.body.classList.add('page-enter');
+                requestAnimationFrame(() => {
+                    document.body.classList.add('page-enter-active');
+                });
+
+                select.addEventListener('change', updateLang);
+
+                // Добавляем обработчики для навигационных ссылок
+                const navLinks = document.querySelectorAll('.navbar a[href]');
+                navLinks.forEach(link => {
+                    link.addEventListener('click', handlePageTransition);
+                });
+            });
+        </script>
+</body>
+</html>

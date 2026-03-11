@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Minecraft | Сайт игр</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body dir="ltr" class="page-loading">
+
+<nav class="navbar">
+<ul>
+<li><a href="index.html" id="nav-home">Главная</a></li>
+<li><a href="games.html" id="nav-games">Игры</a></li>
+<li><a href="feedback.html" id="nav-feedback">Обратная связь</a></li>
+</ul>
+<button class="auth-login-btn" id="auth-login-btn" onclick="window.location.href='auth.html'">Войти</button>
+<div class="auth-profile" id="auth-profile" style="display:none;position:absolute;top:14px;right:20px;z-index:101;align-items:center;gap:8px;">
+    <img id="auth-avatar" src="https://www.gstatic.com/images/branding/product/1x/avatar_square_blue_512dp.png" alt="Профиль" style="width:32px;height:32px;border-radius:50%;">
+    <span id="auth-nickname" style="color:#fff;font-weight:600;font-size:1rem;"></span>
+</div>
+<div class="lang-switcher">
+<div class="lang-box">
+<span class="planet-icon">🌐</span>
+<select id="language-select">
+<option value="ru">Русский</option>
+<option value="en">English</option>
+<option value="he">עברית</option>
+<option value="ua">Українська</option>
+</select>
+</div>
+</div>
+</nav>
+
+<main>
+<div class="card">
+
+<h2 id="main-title">Minecraft</h2>
+
+<p id="common-notice" style="margin-top:10px;font-weight:600;"></p>
+
+<p id="translator-note" style="margin-top:8px;color:#facc15;"></p>
+
+<div style="margin-top:15px;">
+<ul id="info-list"></ul>
+</div>
+
+<a href="#" class="button" id="launcher-link" target="_blank">
+Открыть TLauncher
+</a>
+
+<br><br>
+
+<a href="games.html" class="button" id="back-button" style="background:#ccc;color:#000;">
+⬅ Назад ко всем играм
+</a>
+
+</div>
+</main>
+
+<script>
+
+const translations = {
+    ru: {
+        title: 'Minecraft',
+        commonNotice: 'Этот способ позволяет установить Minecraft бесплатно через TLauncher.',
+        translatorNote: '',
+        launcherLink: 'Открыть TLauncher',
+        launcherUrl: 'https://tlauncher.ru/',
+        backButton: '⬅ Назад ко всем играм',
+        info: [
+            'Во время скачивания поддерживаются только русский, украинский и английский.',
+            'После установки можно выбрать любой язык игры.'
+        ],
+        nav: { home: 'Главная', games: 'Игры', feedback: 'Обратная связь' },
+        login: 'Войти'
+    },
+    en: {
+        title: 'Minecraft',
+        commonNotice: 'This method allows you to install Minecraft for free using TLauncher.',
+        translatorNote: '',
+        launcherLink: 'Open TLauncher',
+        launcherUrl: 'https://tlauncher.org/en/',
+        backButton: '⬅ Back to all games',
+        info: [
+            'During installation only English, Russian and Ukrainian are supported.',
+            'After installation you can choose any language in the game.'
+        ],
+        nav: { home: 'Home', games: 'Games', feedback: 'Feedback' },
+        login: 'Login'
+    },
+    ua: {
+        title: 'Minecraft',
+        commonNotice: 'Цей спосіб дозволяє встановити Minecraft безкоштовно через TLauncher.',
+        translatorNote: '',
+        launcherLink: 'Відкрити TLauncher',
+        launcherUrl: 'https://tlauncher.ua/',
+        backButton: '⬅ Назад до всіх ігор',
+        info: [
+            'Під час завантаження підтримуються только українська, російська та англійська.',
+            'Після встановлення можна вибрати будь-яку мову гри.'
+        ],
+        nav: { home: 'Головна', games: 'Ігри', feedback: 'Зворотний зв’язок' },
+        login: 'Увійти'
+    },
+    he: {
+        title: 'Minecraft',
+        commonNotice: 'השיטה הזאת מאפשרת להתקין Minecraft בחינם דרך TLauncher.',
+        translatorNote: 'חשוב: בזמן ההורדה TLauncher זמין באנגלית, רוסית ואוקראינית בלבד. לאחר ההתקנה ניתן לבחור כל שפה אחרת.',
+        launcherLink: 'פתח את TLauncher',
+        launcherUrl: 'https://tlauncher.org/en/',
+        backButton: '⬅ חזרה לכל המשחקים',
+        info: [],
+        nav: { home: 'ראשי', games: 'משחקים', feedback: 'משוב' },
+        login: 'התחבר'
+    }
+};
+
+function setDirection(lang) {
+            const dir = lang === 'he' ? 'rtl' : 'ltr';
+            document.documentElement.setAttribute('dir', dir);
+            document.body.setAttribute('dir', dir);
+        }
+
+        function applyTranslations(lang){
+            setDirection(lang);        // ← добавлено
+
+            const t = translations[lang];
+
+            // Анимация выхода
+            const langBox = document.querySelector('.lang-box');
+            const card = document.querySelector('.card');
+            langBox.classList.add('lang-animate');
+            card.classList.add('lang-animate');
+
+            setTimeout(() => {
+                document.getElementById('main-title').textContent=t.title;
+
+                document.getElementById('common-notice').textContent=t.commonNotice;
+
+                const note=document.getElementById('translator-note');
+
+                if(t.translatorNote){
+                note.textContent=t.translatorNote;
+                note.style.display='block';
+                }else{
+                note.style.display='none';
+                }
+
+                const list=document.getElementById('info-list');
+                list.innerHTML='';
+
+                (t.info || []).forEach(line=>{
+                const li=document.createElement('li');
+                li.textContent=line;
+                list.appendChild(li);
+                });
+
+                const launcher=document.getElementById('launcher-link');
+                launcher.textContent=t.launcherLink;
+                launcher.href=t.launcherUrl;
+
+                document.getElementById('back-button').textContent=t.backButton;
+
+                document.getElementById('nav-home').textContent=t.nav.home;
+                document.getElementById('nav-games').textContent=t.nav.games;
+                document.getElementById('nav-feedback').textContent=t.nav.feedback;
+
+                const loginBtn = document.querySelector('.auth-login-btn');
+                if(loginBtn) loginBtn.textContent = t.login;
+                showAuthProfile();
+
+                if(lang==='he'){
+                document.body.dir='rtl';
+                document.querySelector('.card').style.textAlign='right';
+                }else{
+                document.body.dir='ltr';
+                document.querySelector('.card').style.textAlign='left';
+                }
+
+                // Анимация входа
+                requestAnimationFrame(() => {
+                    langBox.classList.remove('lang-animate');
+                    card.classList.remove('lang-animate');
+                });
+            }, 180);
+
+        }
+
+        function showAuthProfile() {
+            const user = localStorage.getItem('authUser');
+            const btn = document.getElementById('auth-login-btn');
+            const profile = document.getElementById('auth-profile');
+            const nick = document.getElementById('auth-nickname');
+            const avatar = document.getElementById('auth-avatar');
+            if(user) {
+                const data = JSON.parse(user);
+                btn.style.display = 'none';
+                profile.style.display = 'flex';
+                nick.textContent = data.name;
+                avatar.src = data.avatar || 'https://www.gstatic.com/images/branding/product/1x/avatar_square_blue_512dp.png';
+            } else {
+                btn.style.display = '';
+                profile.style.display = 'none';
+            }
+        }
+
+        // Функция для плавного перехода страниц
+        function handlePageTransition(event) {
+            event.preventDefault();
+            const href = event.currentTarget.href;
+            document.body.classList.add('page-exit');
+            setTimeout(() => {
+                window.location.href = href;
+            }, 350);
+        }
+
+        document.addEventListener('DOMContentLoaded',()=>{
+
+        const lang=localStorage.getItem('siteLang')||'ru';
+
+        const select=document.getElementById('language-select');
+
+        select.value=lang;
+
+        applyTranslations(lang);
+
+        // Удаляем скрытие и добавляем анимацию входа
+        document.body.classList.remove('page-loading');
+        document.body.classList.add('page-enter');
+        requestAnimationFrame(() => {
+            document.body.classList.add('page-enter-active');
+        });
+
+        select.addEventListener('change',()=>{
+
+        const newLang=select.value;
+
+        localStorage.setItem('siteLang',newLang);
+
+        applyTranslations(newLang);
+
+        });
+
+        // Добавляем обработчики для навигационных ссылок
+        const navLinks = document.querySelectorAll('.navbar a[href]');
+        navLinks.forEach(link => {
+            link.addEventListener('click', handlePageTransition);
+        });
+
+        showAuthProfile();
+
+        });
+
+        </script>
+
+        </body>
+        </html>
